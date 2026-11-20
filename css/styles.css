@@ -210,3 +210,281 @@ input[type="range"] { width: 100%; accent-color: var(--coral); }
   .site-header, .site-footer, .btn { display: none; }
   body { background: #fff; }
 }
+/* 14. History timeline (home page) ----------------------- */
+
+.era-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin: 1.2rem 0 2rem;
+}
+
+.era-nav a {
+  background: var(--sand);
+  color: var(--navy);
+  text-decoration: none;
+  border: 2px solid var(--sand-dark);
+  border-radius: 999px;
+  padding: 0.3rem 0.9rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.era-nav a:hover {
+  background: var(--navy);
+  color: var(--white);
+  border-color: var(--navy);
+}
+
+.timeline {
+  position: relative;
+  margin: 0 0 2rem;
+  padding-left: 1.8rem;
+  border-left: 3px solid var(--sand-dark);
+}
+
+.era {
+  margin-bottom: 2.6rem;
+  scroll-margin-top: 84px;
+}
+
+.era h3 {
+  font-size: 1.45rem;
+  margin-bottom: 1rem;
+}
+
+.era__dates {
+  display: inline-block;
+  margin-left: 0.5rem;
+  vertical-align: middle;
+  background: var(--navy);
+  color: var(--sand);
+  border-radius: 999px;
+  padding: 0.1rem 0.7rem;
+  font-family: var(--font-body);
+  font-size: 0.78rem;
+  font-weight: 600;
+}
+
+.event {
+  position: relative;
+  background: var(--sand);
+  border-radius: var(--radius);
+  padding: 1rem 1.2rem 0.4rem;
+  margin-bottom: 1rem;
+}
+
+.event::before {
+  content: "";
+  position: absolute;
+  left: calc(-1.8rem - 9px);
+  top: 1.2rem;
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  background: var(--coral);
+  border: 3px solid var(--white);
+}
+
+.event__year {
+  font-family: var(--font-head);
+  font-weight: bold;
+  font-size: 1.05rem;
+  color: var(--lagoon);
+  margin-bottom: 0.2rem;
+}
+
+/* Phones and small screens */
+@media (max-width: 800px) {
+  .timeline {
+    padding-left: 1.2rem;
+  }
+
+  .event::before {
+    left: calc(-1.2rem - 9px);
+  }
+
+  .era__dates {
+    display: block;
+    margin: 0.4rem 0 0;
+    width: fit-content;
+  }
+}/* 16. History picture cards: text pops up when you hover the picture */
+
+.timeline {
+  padding-left: 0;
+  border-left: none;
+}
+
+.era__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+  gap: 1.2rem;
+}
+
+.event {
+  position: relative;
+  overflow: hidden;
+  min-height: 330px;
+  margin-bottom: 0;
+  padding: 0;
+  background: var(--navy);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  cursor: pointer;
+  transition: transform 0.35s ease, box-shadow 0.35s ease;
+}
+
+.event::before {
+  display: none;
+}
+
+.event:hover,
+.event:focus {
+  transform: translateY(-8px);
+  box-shadow: 0 18px 36px rgba(10, 37, 64, 0.28);
+}
+
+.event:focus-visible {
+  outline: 3px solid var(--coral);
+  outline-offset: 3px;
+}
+
+/* The picture fills the whole card */
+.event__photo {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+  aspect-ratio: auto;
+  object-fit: cover;
+  transition: transform 0.6s ease;
+}
+
+.event:hover .event__photo,
+.event:focus .event__photo {
+  transform: scale(1.1);
+}
+
+/* Year label: sits on the picture, moves to the top when text appears */
+.event__year {
+  position: absolute;
+  top: calc(100% - 3.4rem);
+  left: 0;
+  right: 0;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  height: 3.4rem;
+  margin: 0;
+  padding: 0 1rem;
+  color: var(--white);
+  font-size: 1.1rem;
+  background: linear-gradient(to top, rgba(10, 37, 64, 0.9), rgba(10, 37, 64, 0));
+  transition: top 0.4s ease, background 0.4s ease;
+}
+
+.event__year::after {
+  content: "Hover to read";
+  margin-left: auto;
+  font-family: var(--font-body);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  opacity: 0.85;
+  transition: opacity 0.3s ease;
+}
+
+.event:hover .event__year,
+.event:focus .event__year {
+  top: 0;
+  color: var(--sand-dark);
+  background: transparent;
+}
+
+.event:hover .event__year::after,
+.event:focus .event__year::after {
+  opacity: 0;
+}
+
+/* The story text: hidden at first, pops up over the picture */
+.event p:not(.event__year) {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  margin: 0;
+  padding: 3.6rem 1.2rem 1.2rem;
+  overflow-y: auto;
+  color: var(--white);
+  font-size: 0.9rem;
+  line-height: 1.55;
+  background: rgba(10, 37, 64, 0.93);
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+.event:hover p:not(.event__year),
+.event:focus p:not(.event__year) {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Phones and touch screens: picture on top, text underneath, always visible */
+@media (max-width: 800px), (hover: none) {
+  .event {
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+    background: var(--sand);
+    cursor: default;
+  }
+
+  .event:hover,
+  .event:focus {
+    transform: none;
+    box-shadow: var(--shadow);
+  }
+
+  .event__photo {
+    position: static;
+    order: -1;
+    height: 190px;
+  }
+
+  .event:hover .event__photo,
+  .event:focus .event__photo {
+    transform: none;
+  }
+
+  .event__year,
+  .event:hover .event__year,
+  .event:focus .event__year {
+    position: static;
+    display: block;
+    height: auto;
+    padding: 0.8rem 1.2rem 0;
+    color: var(--lagoon);
+    background: none;
+  }
+
+  .event__year::after {
+    display: none;
+  }
+
+  .event p:not(.event__year) {
+    position: static;
+    padding: 0.2rem 1.2rem 1.2rem;
+    overflow: visible;
+    color: var(--ink);
+    font-size: 1rem;
+    background: none;
+    opacity: 1;
+    transform: none;
+  }
+}
