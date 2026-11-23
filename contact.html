@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Send an enquiry about visiting Azerbaijan.">
+  <title>Contact | Odlar Diyarı</title>
+  <link rel="icon" type="image/svg+xml" href="images/logo/odlar-diyari-favicon-512.png">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to main content</a>
+
+  <header class="site-header">
+    <nav class="container nav" aria-label="Main navigation">
+      <a class="brand" href="index.html"><img src="images/logo/odlar-diyari-logo-stacked.png" alt="">Odlar Diyarı</a>
+      <button class="nav__toggle" aria-expanded="false" aria-controls="menu" aria-label="Toggle menu">&#9776;</button>
+      <ul class="nav__list" id="menu">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="explore.html">Explore</a></li>
+        <li><a href="planner.html">Trip Planner</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="contact.html" aria-current="page">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main id="main">
+    <section class="page-banner">
+      <div class="container">
+        <h1>Ask us anything</h1>
+        <p>Dreaming of Azerbaijan? Tell us a little about your trip and we will point you in the right direction.</p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container" style="max-width:760px">
+
+        <!-- Shown after a successful submit (see js/script.js) -->
+        <div id="confirmation" class="confirmation" role="status" aria-live="polite">
+          <h2>Thank you, <span data-name></span>!</h2>
+          <p>Your enquiry about <strong data-topic></strong> has been received. Here is what happens next:</p>
+          <ol>
+            <li>A confirmation message is sent to <strong data-email></strong> right away.</li>
+            <li>One of our travel advisers reads your enquiry and replies within 2 working days.</li>
+            <li>While you wait, browse the <a href="explore.html">Explore page</a> or try the <a href="planner.html">Trip Planner</a>.</li>
+          </ol>
+          <p class="hint">Student project note: this demo site has no server, so nothing is actually sent or stored.</p>
+        </div>
+
+        <form id="contact-form" class="form-card" action="#" method="post">
+          <p class="hint">Fields marked <span class="req">*</span> are required.</p>
+
+          <fieldset>
+            <legend>About you</legend>
+            <div class="field">
+              <label for="name">Full name <span class="req">*</span></label>
+              <input type="text" id="name" name="name" required minlength="2" maxlength="80" autocomplete="name" placeholder="e.g. Amina Dupont">
+            </div>
+            <div class="field">
+              <label for="email">Email address <span class="req">*</span></label>
+              <input type="email" id="email" name="email" required autocomplete="email" placeholder="you@example.com">
+            </div>
+            <div class="field">
+              <label for="phone">Phone (optional)</label>
+              <input type="tel" id="phone" name="phone" autocomplete="tel" pattern="[0-9+\s\-()]{7,20}" placeholder="+230 5xxx xxxx">
+              <p class="hint">Digits, spaces, + and - only.</p>
+            </div>
+          </fieldset>
+
+          <fieldset>
+            <legend>Your trip</legend>
+            <div class="field">
+              <label for="topic">What is your enquiry about? <span class="req">*</span></label>
+              <select id="topic" name="topic" required>
+                <option value="">Please choose...</option>
+                <option value="attractions">Attractions and sightseeing</option>
+                <option value="food">Food and culture</option>
+                <option value="activities">Tours and activities</option>
+                <option value="budget">Budget and costs</option>
+                <option value="visa">Visa and travel documents</option>
+                <option value="other">Something else</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="travel-date">Planned arrival date (optional)</label>
+              <input type="date" id="travel-date" name="travel_date">
+            </div>
+            <div class="field">
+              <label for="travellers">Number of travellers</label>
+              <input type="number" id="travellers" name="travellers" min="1" max="20" value="2">
+            </div>
+            <div class="field">
+              <span class="label" id="style-label">Travel style</span>
+              <div class="inline-options" role="radiogroup" aria-labelledby="style-label">
+                <label><input type="radio" name="style" value="culture" checked> Cultural</label>
+                <label><input type="radio" name="style" value="adventure"> Adventurous</label>
+                <label><input type="radio" name="style" value="relax"> Relaxing</label>
+                <label><input type="radio" name="style" value="family"> Family</label>
+              </div>
+            </div>
+            <div class="field">
+              <label for="budget">Approximate budget per person: <output id="budget-out" for="budget">USD 1,500</output></label>
+              <input type="range" id="budget" name="budget" min="500" max="5000" step="100" value="1500">
+            </div>
+            <div class="field">
+              <span class="label" id="int-label">Interested in (tick any)</span>
+              <div class="inline-options" role="group" aria-labelledby="int-label">
+                <label><input type="checkbox" name="interests" value="history"> History</label>
+                <label><input type="checkbox" name="interests" value="mountains"> Mountains</label>
+                <label><input type="checkbox" name="interests" value="food"> Food</label>
+                <label><input type="checkbox" name="interests" value="festivals"> Festivals</label>
+              </div>
+            </div>
+          </fieldset>
+
+          <fieldset>
+            <legend>Your message</legend>
+            <div class="field">
+              <label for="message">Message <span class="req">*</span></label>
+              <textarea id="message" name="message" required minlength="10" maxlength="1000" placeholder="Tell us what you would like to know..."></textarea>
+            </div>
+            <div class="field">
+              <label for="consent" style="font-weight:400">
+                <input type="checkbox" id="consent" name="consent" required> I agree to be contacted about this enquiry. <span class="req">*</span>
+              </label>
+            </div>
+          </fieldset>
+
+          <button class="btn" type="submit">Send enquiry</button>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container grid grid--3">
+      <div>
+        <h2>Odlar Diyarı</h2>
+        <p>&ldquo;Land of Fires&rdquo;: a travel showcase for Azerbaijan. Odlar Diyarı is a fictional agency created for a student web design assignment.</p>
+      </div>
+      <div>
+        <h2>Pages</h2>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="explore.html">Explore</a></li>
+          <li><a href="planner.html">Trip Planner</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <h2>Good to know</h2>
+        <ul>
+          <li>Best months: April&ndash;June, September&ndash;October</li>
+          <li>Currency: Azerbaijani manat (AZN)</li>
+          <li>Drive on the right</li>
+          <li>Most visitors need an e-visa, so check before you book</li>
+          <li><a href="https://tourismboard.az" target="_blank" rel="noopener noreferrer">Azerbaijan Tourism Board</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="container footer__bottom">
+      &copy; <span id="year">2026</span> Odlar Diyarı. All illustrations are original. See Sources_Credits.pdf for acknowledgements.
+    </div>
+  </footer>
+  <script src="js/script.js"></script>
+</body>
+</html>
