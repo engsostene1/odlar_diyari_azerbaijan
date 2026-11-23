@@ -230,3 +230,4 @@ External resources linked from the site:
 
 - Azerbaijan Tourism Board: https://tourismboard.az
 - UNESCO World Heritage, Azerbaijan: https://whc.unesco.org/en/statesparties/az
+- Walkthrough video: https://drive.google.com/file/d/1O6apTRlQG3smJ-sAnGKjRGsjrdhCzMRL/view?usp=sharing
